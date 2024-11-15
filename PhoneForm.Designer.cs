@@ -73,15 +73,22 @@ namespace MlSampleWindowCS
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkVoiceMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unregisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.çagrýListesiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.PictureErr = new System.Windows.Forms.Panel();
             this.pictureReceivedVideo = new System.Windows.Forms.PictureBox();
             this.pictureLocalVideo = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonExpand = new System.Windows.Forms.LinkLabel();
             this.buttonSendText = new System.Windows.Forms.Button();
-            this.çagrýListesiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.gridCallList = new DevExpress.XtraGrid.GridControl();
+            this.ViewCallList = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.spkVolume)).BeginInit();
             this.CallPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.micVolume)).BeginInit();
@@ -90,8 +97,13 @@ namespace MlSampleWindowCS
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureReceivedVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLocalVideo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).BeginInit();
+            this.navigationFrame1.SuspendLayout();
+            this.navigationPage1.SuspendLayout();
+            this.navigationPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCallList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewCallList)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRecordStartStop
@@ -436,6 +448,12 @@ namespace MlSampleWindowCS
             resources.ApplyResources(this.unregisterToolStripMenuItem, "unregisterToolStripMenuItem");
             this.unregisterToolStripMenuItem.Click += new System.EventHandler(this.unregisterToolStripMenuItem_Click);
             // 
+            // çagrýListesiToolStripMenuItem
+            // 
+            this.çagrýListesiToolStripMenuItem.Name = "çagrýListesiToolStripMenuItem";
+            resources.ApplyResources(this.çagrýListesiToolStripMenuItem, "çagrýListesiToolStripMenuItem");
+            this.çagrýListesiToolStripMenuItem.Click += new System.EventHandler(this.çagrýListesiToolStripMenuItem_Click);
+            // 
             // pictureBox3
             // 
             resources.ApplyResources(this.pictureBox3, "pictureBox3");
@@ -461,12 +479,6 @@ namespace MlSampleWindowCS
             this.pictureLocalVideo.Name = "pictureLocalVideo";
             this.pictureLocalVideo.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
@@ -489,22 +501,80 @@ namespace MlSampleWindowCS
             this.buttonSendText.UseVisualStyleBackColor = true;
             this.buttonSendText.Click += new System.EventHandler(this.sendTextBtn_Click);
             // 
-            // çagrýListesiToolStripMenuItem
+            // navigationFrame1
             // 
-            this.çagrýListesiToolStripMenuItem.Name = "çagrýListesiToolStripMenuItem";
-            resources.ApplyResources(this.çagrýListesiToolStripMenuItem, "çagrýListesiToolStripMenuItem");
-            this.çagrýListesiToolStripMenuItem.Click += new System.EventHandler(this.çagrýListesiToolStripMenuItem_Click);
+            this.navigationFrame1.Controls.Add(this.navigationPage1);
+            this.navigationFrame1.Controls.Add(this.navigationPage2);
+            resources.ApplyResources(this.navigationFrame1, "navigationFrame1");
+            this.navigationFrame1.Name = "navigationFrame1";
+            this.navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.navigationPage1,
+            this.navigationPage2});
+            this.navigationFrame1.SelectedPage = this.navigationPage1;
+            // 
+            // navigationPage1
+            // 
+            resources.ApplyResources(this.navigationPage1, "navigationPage1");
+            this.navigationPage1.Controls.Add(this.pictureReceivedVideo);
+            this.navigationPage1.Controls.Add(this.pictureBox3);
+            this.navigationPage1.Controls.Add(this.pictureLocalVideo);
+            this.navigationPage1.Name = "navigationPage1";
+            // 
+            // navigationPage2
+            // 
+            resources.ApplyResources(this.navigationPage2, "navigationPage2");
+            this.navigationPage2.Controls.Add(this.gridCallList);
+            this.navigationPage2.Name = "navigationPage2";
+            // 
+            // gridCallList
+            // 
+            resources.ApplyResources(this.gridCallList, "gridCallList");
+            this.gridCallList.MainView = this.ViewCallList;
+            this.gridCallList.Name = "gridCallList";
+            this.gridCallList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ViewCallList});
+            // 
+            // ViewCallList
+            // 
+            this.ViewCallList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
+            this.ViewCallList.GridControl = this.gridCallList;
+            this.ViewCallList.Name = "ViewCallList";
+            this.ViewCallList.OptionsView.ShowGroupPanel = false;
+            this.ViewCallList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.ViewCallList_RowCellClick);
+            this.ViewCallList.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.ViewCallList_RowStyle);
+            // 
+            // gridColumn1
+            // 
+            resources.ApplyResources(this.gridColumn1, "gridColumn1");
+            this.gridColumn1.FieldName = "TIPI";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn2
+            // 
+            resources.ApplyResources(this.gridColumn2, "gridColumn2");
+            this.gridColumn2.FieldName = "NUMARA";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn3
+            // 
+            resources.ApplyResources(this.gridColumn3, "gridColumn3");
+            this.gridColumn3.FieldName = "DURUM";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             // 
             // SIPPhoneForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.navigationFrame1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.buttonExpand);
-            this.Controls.Add(this.pictureLocalVideo);
-            this.Controls.Add(this.pictureReceivedVideo);
             this.Controls.Add(this.PictureErr);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.notificationsListBox);
@@ -518,7 +588,6 @@ namespace MlSampleWindowCS
             this.Controls.Add(this.buttonRecordStartStop);
             this.Controls.Add(this.CallPanel);
             this.Controls.Add(this.buttonHoldRetrieve);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.buttonStartHangupCall);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -539,8 +608,13 @@ namespace MlSampleWindowCS
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureReceivedVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLocalVideo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navigationFrame1)).EndInit();
+            this.navigationFrame1.ResumeLayout(false);
+            this.navigationPage1.ResumeLayout(false);
+            this.navigationPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridCallList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewCallList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -593,7 +667,6 @@ namespace MlSampleWindowCS
 		private System.Windows.Forms.Panel PictureErr;
 		private System.Windows.Forms.PictureBox pictureReceivedVideo;
 		private System.Windows.Forms.PictureBox pictureLocalVideo;
-		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.LinkLabel buttonExpand;
 		private System.Windows.Forms.Button buttonSendText;
@@ -601,6 +674,14 @@ namespace MlSampleWindowCS
 		private System.Windows.Forms.Label callDurationLabel;
 		private System.Windows.Forms.ToolStripMenuItem checkVoiceMailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem çagrýListesiToolStripMenuItem;
+        private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame1;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage2;
+        private DevExpress.XtraGrid.GridControl gridCallList;
+        private DevExpress.XtraGrid.Views.Grid.GridView ViewCallList;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }
 
